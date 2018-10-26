@@ -3,7 +3,6 @@ import socket
 import ssl
 import sys
 from codecs import BOM_UTF8
-from collections import OrderedDict
 from datetime import datetime
 from logging.handlers import SysLogHandler, SYSLOG_UDP_PORT
 
@@ -155,7 +154,7 @@ class Rfc5424SysLogHandler(SysLogHandler):
         if self.hostname is None or self.hostname == '':
             self.hostname = socket.gethostname()
         if not isinstance(self.structured_data, dict):
-            self.structured_data = OrderedDict()
+            self.structured_data = {}
 
         self.socket.settimeout(timeout)
 
@@ -210,7 +209,7 @@ class Rfc5424SysLogHandler(SysLogHandler):
             return self.filter_printusascii(str(enterprise_id))
 
     def get_structured_data(self, record):
-        structured_data = OrderedDict()
+        structured_data = {}
         if isinstance(self.structured_data, dict):
             structured_data.update(self.structured_data)
         record_sd = getattr(record, 'structured_data', {})
