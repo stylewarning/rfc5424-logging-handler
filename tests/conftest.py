@@ -1,6 +1,5 @@
 import logging
 import socket
-from collections import OrderedDict
 from six import python_2_unicode_compatible
 import pytest
 import pytz
@@ -24,17 +23,17 @@ message = 'This is an interesting message'
 
 sd1 = {'my_sd_id1@32473': {'my_key1': 'my_value1'}}
 sd2 = {'my_sd_id2@32473': {'my_key2': 'my_value2'}}
-sd_multi_id = OrderedDict()
+sd_multi_id = {}
 sd_multi_id.update(sd1)
 sd_multi_id.update(sd2)
-sd_multi_param = {'my_sd_id1@32473': OrderedDict([('my_key1', 'my_value1'), ('my_key2', 'my_value2')])}
+sd_multi_param = {'my_sd_id1@32473': {'my_key1': 'my_value1', 'my_key2': 'my_value2'}}
 
 sd1_no_pen = {'my_sd_id1': {'my_key1': 'my_value1'}}
 sd2_no_pen = {'my_sd_id2': {'my_key2': 'my_value2'}}
-sd_multi_id_no_pen = OrderedDict()
+sd_multi_id_no_pen = {}
 sd_multi_id_no_pen.update(sd1_no_pen)
 sd_multi_id_no_pen.update(sd2_no_pen)
-sd_multi_param_no_pen = {'my_sd_id1': OrderedDict([('my_key1', 'my_value1'), ('my_key2', 'my_value2')])}
+sd_multi_param_no_pen = {'my_sd_id1': {'my_key1': 'my_value1', 'my_key2': 'my_value2'}}
 
 sd1_param_none_value = {'my_sd_id1@32473': {'my_key1': None}}
 sd1_param_object_value = {'my_sd_id1@32473': {'my_key1': SomeClass()}}
